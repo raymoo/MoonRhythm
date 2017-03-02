@@ -28,6 +28,12 @@ func _input(event):
 		handle_press(event)
 	if event.type == InputEvent.SCREEN_TOUCH and not event.pressed:
 		handle_release(event)
+	if event.type == InputEvent.MOUSE_BUTTON and event.pressed:
+		handle_click(event)
+	if event.type == InputEvent.MOUSE_BUTTON and not event.pressed:
+		handle_unclick(event)
+	if event.type == InputEvent.MOUSE_MOTION:
+		handle_mouse_drag(event)
 
 func get_or_null(dict, key):
 	if dict.has(key):
@@ -86,6 +92,19 @@ func handle_press(event):
 
 func handle_release(event):
 	remove_touch(event.index)
+
+var click_down = false
+func handle_click(event):
+	place_touch(button_count, button_index(event.x))
+	click_down = true
+
+func handle_unclick(event):
+	remove_touch(button_count)
+	click_down = false
+
+func handle_mouse_drag(event):
+	if click_down:
+		handle_click(event)
 
 func pressed_buttons():
 	return touches_by_button.keys()
