@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://Mapview/MapViewCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Mapview/Field.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Keyboard/Keyboard.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Song/FieldTrack.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Song/Hit.tscn" type="PackedScene" id=5]
 
 [node name="Test" type="Control"]
 
@@ -19,7 +21,17 @@ margin/bottom = 0.0
 
 [node name="MapViewCamera" parent="." instance=ExtResource( 1 )]
 
+editor/display_folded = true
 anchor/bottom = 3
+
+[node name="Viewport" parent="MapViewCamera"]
+
+rect = Rect2( 0, 0, 1024, 300 )
+
+[node name="Camera" parent="MapViewCamera/Viewport"]
+
+fov = 88.0
+current = true
 
 [node name="Field" parent="." instance=ExtResource( 2 )]
 
@@ -27,4 +39,13 @@ anchor/bottom = 3
 
 anchor/top = 3
 
+[node name="FieldTrack" parent="." instance=ExtResource( 4 )]
 
+[node name="Hit" parent="FieldTrack" instance=ExtResource( 5 )]
+
+time = 5.0
+
+[connection signal="pressed" from="Keyboard" to="FieldTrack" method="handle_press"]
+
+
+[editable path="MapViewCamera"]
