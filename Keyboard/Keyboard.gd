@@ -1,15 +1,22 @@
 extends HBoxContainer
 
 onready var buttons = get_children()
-onready var touches = {}
-
 onready var button_count = buttons.size()
+
+var touches_by_button = {}
+var buttons_by_touch = {}
 
 const button_up = preload("res://Keyboard/button.png")
 const button_down = preload("res://Keyboard/button_down.png")
 
-signal press(position)
-signal release(position)
+# Finger was pressed down
+signal pressed(button_index)
+
+# Finger moved between keys
+signal moved(from_index, to_index)
+
+# Finger was lifted
+signal released(button_index)
 
 func _ready():
 	set_process_input(true)
@@ -22,44 +29,63 @@ func _input(event):
 	if event.type == InputEvent.SCREEN_TOUCH and not event.pressed:
 		handle_release(event)
 
-# -0.5 is the left edge and 0.5 is the right edge.
+func get_or_null(dict, key):
+	if dict.has(key):
+		return dict[key]
+	else:
+		return null
+
+func remove_touch(touch_index, release=false):
+	var button_index = get_or_null(buttons_by_touch, touch_index)
+	if button_index != null:
+		var button_touches = touches_by_button[button_index]
+		button_touches.erase(touch_index)
+		buttons_by_touch.erase(touch_index)
+		if button_touches.size() == 0:
+			touches_by_button.erase(button_index)
+			buttons[button_index].set_texture(button_up)
+		if release:
+			emit_signal("released", button_index)
+
+func place_touch(touch_index, button_index):
+	var old_button_index = get_or_null(buttons_by_touch, touch_index)
+	if old_button_index != button_index and button_index != null:
+		remove_touch(touch_index)
+		var button_touches = get_or_null(touches_by_button, button_index)
+		if button_touches == null:
+			button_touches = {}
+			touches_by_button[button_index] = button_touches
+		button_touches[touch_index] = true
+		buttons_by_touch[touch_index] = button_index
+		buttons[button_index].set_texture(button_down)
+		if old_button_index == null:
+			emit_signal("pressed", button_index)
+		else:
+			emit_signal("moved", old_button_index, button_index)
+
+# 0 for the left edge, 1 for the right edge
 func touch_position(x):
 	var mystart = get_rect().pos.x
 	var mywidth = get_rect().size.x
 	var proportion_passed = float(x - mystart) / mywidth
-	return proportion_passed - 1
+	return proportion_passed
 
-# Takes the position from the above function
-func button_index(position):
-	var normalized_pos = position + 1
+# Takes the event x
+func button_index(x):
+	var normalized_pos = touch_position(x)
 	if normalized_pos < 0 or normalized_pos >= 1:
 		return null
 	else:
 		return int(floor(normalized_pos * button_count))
 
-func update_buttons():
-	var buttons_pressed = {}
-	for p in touches.values():
-		var index = button_index(p)
-		if index != null:
-			buttons_pressed[index] = true
-	for i in range(button_count):
-		if buttons_pressed.has(i):
-			buttons[i].set_texture(button_down)
-		else:
-			buttons[i].set_texture(button_up)
-
 func handle_drag(event):
-	touches[event.index] = touch_position(event.x)
-	update_buttons()
+	place_touch(event.index, button_index(event.x))
 
 func handle_press(event):
-	touches[event.index] = touch_position(event.x)
-	update_buttons()
+	place_touch(event.index, button_index(event.x))
 
 func handle_release(event):
-	touches.erase(event.index)
-	update_buttons()
+	remove_touch(event.index)
 
-func touched_positions():
-	return touches.values()
+func pressed_buttons():
+	return touches_by_button.keys()
