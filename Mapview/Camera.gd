@@ -1,7 +1,7 @@
 
 extends Camera
 
-const fovy = PI/2
+onready var fovy = deg2rad(get_fov())
 const plane_width = 1
 const plane_side = plane_width * 0.5
 
