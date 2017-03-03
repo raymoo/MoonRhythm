@@ -25,7 +25,7 @@ func update(display_time):
 	translation.z = tminus * meters_per_second
 	set_translation(translation)
 	if tminus > 0.5:
-		var pos = lane * 0.125 - 0.5 + 0.625
+		var pos = lane * 0.125 + 0.0625
 		var pic = scoreview.instance()
 		pic.set_texture(sad)
 		pic.x = pos
@@ -34,7 +34,7 @@ func update(display_time):
 		active = false
 
 func press(hit_time):
-	var pos = lane * 0.125 - 0.5 + 0.625
+	var pos = lane * 0.125 + 0.0625
 	if abs(hit_time - time) < 0.25 and active:
 		var pic = scoreview.instance()
 		pic.set_texture(happy)
