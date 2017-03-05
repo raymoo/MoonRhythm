@@ -28,7 +28,7 @@ func _ready():
 	translation.x = x
 	set_translation(translation)
 	var scale = get_scale()
-	scale.x = x_scale / 2.0
+	scale.x = x_scale / 2.0 - 0.005
 	set_scale(scale)
 
 func die():
