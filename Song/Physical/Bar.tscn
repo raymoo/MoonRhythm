@@ -1,11 +1,11 @@
 [gd_scene load_steps=2 format=1]
 
-[ext_resource path="res://Song/Physical/Hit.gd" type="Script" id=1]
+[ext_resource path="res://Song/Physical/Bar.gd" type="Script" id=1]
 
-[node name="Hit" type="TestCube" groups=[ "FieldElement" ]]
+[node name="Bar" type="TestCube" groups=[ "field_press", "field_update" ]]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 0.0625, 0, 0, 0, 0.01, 0, 0, 0, 0.03125, 0, 0.01, 0 )
+transform/local = Transform( 0.125, 0, 0, 0, 0.005, 0, 0, 0, 0.0625, 0, 0.005, 1 )
 layers = 1
 geometry/visible = true
 geometry/material_override = null
@@ -21,8 +21,9 @@ geometry/visible_in_all_rooms = false
 geometry/use_baked_light = false
 geometry/baked_light_tex_id = 0
 script/script = ExtResource( 1 )
-meters_per_second = 1.0
-lane = 0
+start_lane = 0
+end_lane = 0
 time = 0.0
+speed = 1.0
 
 
