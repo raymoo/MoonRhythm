@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://Mapview/MapViewCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Song/FieldTrack.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Song/Physical/Bar.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Mapview/Field.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Keyboard/Keyboard.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Mapview/Field.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Keyboard/Keyboard.tscn" type="PackedScene" id=4]
 
 [node name="Test" type="Control"]
 
@@ -36,36 +35,11 @@ current = true
 
 anchor/right = 1
 anchor/bottom = 3
+scroll_speed = 2.0
 
-[node name="Bar" parent="FieldTrack" instance=ExtResource( 3 )]
+[node name="Field" parent="." instance=ExtResource( 3 )]
 
-time = 3.0
-speed = 2.0
-
-[node name="Bar1" parent="FieldTrack" instance=ExtResource( 3 )]
-
-start_lane = 1
-end_lane = 2
-time = 3.25
-speed = 2.0
-
-[node name="Bar2" parent="FieldTrack" instance=ExtResource( 3 )]
-
-start_lane = 3
-end_lane = 5
-time = 3.5
-speed = 2.0
-
-[node name="Bar3" parent="FieldTrack" instance=ExtResource( 3 )]
-
-start_lane = 6
-end_lane = 7
-time = 3.75
-speed = 2.0
-
-[node name="Field" parent="." instance=ExtResource( 4 )]
-
-[node name="Keyboard" parent="." instance=ExtResource( 5 )]
+[node name="Keyboard" parent="." instance=ExtResource( 4 )]
 
 anchor/top = 3
 
