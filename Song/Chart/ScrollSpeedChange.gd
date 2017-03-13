@@ -8,7 +8,7 @@ func _init(time_ms, speed_percent):
 	self.speed_percent = speed_percent
 
 func get_time():
-	return time_ms / 100.0
+	return time_ms / 1000.0
 
 func get_speed_multiplier():
 	return speed_percent / 100.0

@@ -12,9 +12,9 @@ func _init(time_ms, start_lane, end_lane):
 	self.end_lane = end_lane
 
 func get_time():
-	return time_ms / 100.0
+	return time_ms / 1000.0
 
 func make_physical(scroll_pos):
 	var manifestation = PhysicalBar.instance()
-	manifestation._init(start_lane, end_lane, time_ms / 100.0, scroll_pos)
+	manifestation._init(start_lane, end_lane, time_ms / 1000.0, scroll_pos)
 	return manifestation
