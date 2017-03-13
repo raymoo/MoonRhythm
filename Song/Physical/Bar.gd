@@ -1,7 +1,7 @@
 extends TestCube
 
-const good_threshold = 0.2
-const bad_threshold = 0.5
+const good_threshold = 0.1
+const bad_threshold = 0.2
 
 const MIN_X = -0.5
 const LANE_COUNT = 8

@@ -12,8 +12,8 @@ export var speed_multiplier = 1.0
 var element_buffer
 
 # After a lane hits an object, it is blocked for 2 frames
-var new_blocked_lanes = []
-var old_blocked_lanes = []
+var new_blocked_lane_ranges = []
+var old_blocked_lane_ranges = []
 
 func _ready():
 	set_process(true)
@@ -22,8 +22,8 @@ func _ready():
 	element_buffer = ElementBuffer.new(random_chart, speed_multiplier)
 
 func _fixed_process(delta):
-	old_blocked_lanes= new_blocked_lanes
-	new_blocked_lanes = []
+	old_blocked_lane_ranges = new_blocked_lane_ranges
+	new_blocked_lane_ranges = []
 	time += delta
 	var scroll_pos = element_buffer.time_to_scroll_pos(time)
 	element_buffer.add_new_elements_to(self, scroll_pos + 5)
@@ -43,13 +43,12 @@ func show_score_object(is_good, lane_pos):
 	
 
 func is_affected(button_index, element):
-	return button_index >= element.get_start_lane() and button_index <= element.get_end_lane()
+	return button_index >= element.get_start_lane() and button_index <= element.get_end_lane() and valid_hit(button_index, element.get_time())
 
 func cmp_element(elem1, elem2):
 	return elem1.get_time() < elem2.get_time()
 
 func handle_press(button_index):
-	if inactive_lane(button_index): return
 	var scroll_pos = element_buffer.time_to_scroll_pos(time)
 	var elements = get_tree().get_nodes_in_group("field_press")
 	elements.sort_custom(self, "cmp_element")
@@ -58,11 +57,22 @@ func handle_press(button_index):
 			var handled = element.press(self, scroll_pos, time)
 			if handled:
 				for button_index in range(element.get_start_lane(), element.get_end_lane() + 1):
-					new_blocked_lanes.push_back(button_index)
+					var entry = {
+						"start_lane" : element.get_start_lane(),
+						"end_lane" : element.get_end_lane(),
+						"time" : element.get_time()
+					}
+					new_blocked_lane_ranges.push_back(entry)
 				break
 
 func handle_move(from, to):
 	handle_press(to)
 
-func inactive_lane(button_index):
-	return new_blocked_lanes.has(button_index) or old_blocked_lanes.has(button_index)
+func valid_hit(button_index, element_time):
+	for r in new_blocked_lane_ranges:
+		if button_index >= r.start_lane and button_index <= r.end_lane and element_time > r.time:
+			return false
+	for r in old_blocked_lane_ranges:
+		if button_index >= r.start_lane and button_index <= r.end_lane and element_time > r.time:
+			return false
+	return true
