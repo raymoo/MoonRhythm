@@ -35,7 +35,7 @@ current = true
 
 anchor/right = 1
 anchor/bottom = 3
-scroll_speed = 2.0
+speed_multiplier = 2.0
 
 [node name="Field" parent="." instance=ExtResource( 3 )]
 

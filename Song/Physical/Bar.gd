@@ -12,10 +12,11 @@ var end_lane = 0
 var my_scroll_pos = 0.0
 var my_time = 0.0
 
-var center_lane = (end_lane + 1 + start_lane) / 2.0
+onready var center_lane = (end_lane + 1 + start_lane) / 2.0
 var active = true
 
 func _init(start=0, end=0, note_time=0.0, note_scroll_pos=0.0):
+	print(start, " ", end, " ", note_time, " ", note_scroll_pos)
 	start_lane = start
 	end_lane = end
 	my_time = note_time
