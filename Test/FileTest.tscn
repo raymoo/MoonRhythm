@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://Test/FileTest.gd" type="Script" id=1]
+
+[node name="FileDialog" type="FileDialog"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+popup/exclusive = false
+window/title = "Save a File"
+dialog/hide_on_ok = false
+mode = 4
+access = 0
+filters = StringArray(  )
+show_hidden_files = false
+script/script = ExtResource( 1 )
+
+
