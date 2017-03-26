@@ -18,8 +18,12 @@ var old_blocked_lane_ranges = []
 func _ready():
 	set_process(true)
 	set_fixed_process(true)
-	var random_chart = Chart.make_randoms(100, 0.25, 2)
-	element_buffer = ElementBuffer.new(random_chart, speed_multiplier)
+	# var random_chart = Chart.make_randoms(100, 0.25, 2)
+	# element_buffer = ElementBuffer.new(random_chart, speed_multiplier)
+
+func load_chart(chart):
+	time = 0.0
+	element_buffer = ElementBuffer.new(chart, speed_multiplier)
 
 func _fixed_process(delta):
 	old_blocked_lane_ranges = new_blocked_lane_ranges
