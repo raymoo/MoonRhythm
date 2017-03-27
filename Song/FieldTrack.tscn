@@ -1,9 +1,12 @@
-[gd_scene load_steps=2 format=1]
+[gd_scene load_steps=3 format=1]
 
 [ext_resource path="res://Song/FieldTrack.gd" type="Script" id=1]
+[ext_resource path="res://Mapview/Field.tscn" type="PackedScene" id=2]
 
 [node name="FieldTrack" type="Control"]
 
+anchor/right = 1
+anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -13,5 +16,25 @@ margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
 script/script = ExtResource( 1 )
+speed_multiplier = 1.0
+
+[node name="Viewport" type="Viewport" parent="."]
+
+rect = Rect2( 0, 0, 1024, 600 )
+own_world = false
+world = null
+transparent_bg = false
+render_target/enabled = false
+render_target/v_flip = false
+render_target/clear_on_new_frame = true
+render_target/filter = false
+render_target/gen_mipmaps = false
+render_target/update_mode = 2
+audio_listener/enable_2d = false
+audio_listener/enable_3d = false
+physics/object_picking = false
+gui/disable_input = false
+
+[node name="Field" parent="Viewport" instance=ExtResource( 2 )]
 
 
