@@ -61,6 +61,8 @@ func read_file(path):
 func handle_tag(tag, tagline, file):
 	if tag == "BPMS":
 		return handle_bpms(tagline, file)
+	elif tag == "STOPS":
+		return handle_stops(tagline, file)
 	elif tag == "OFFSET":
 		offset = tagline.to_float()
 		if offset == null:
