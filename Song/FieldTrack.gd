@@ -18,8 +18,9 @@ var old_blocked_lane_ranges = []
 func _ready():
 	set_process(true)
 	set_fixed_process(true)
-	# var random_chart = Chart.make_randoms(100, 0.25, 2)
-	# element_buffer = ElementBuffer.new(random_chart, speed_multiplier)
+	if element_buffer == null:
+		var random_chart = Chart.make_randoms(100, 0.25, 2)
+		element_buffer = ElementBuffer.new(random_chart, speed_multiplier)
 
 func load_chart(chart):
 	time = 0.0

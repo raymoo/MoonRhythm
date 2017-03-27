@@ -6,7 +6,8 @@ const plane_width = 1
 const plane_side = plane_width * 0.5
 
 func _ready():
-	pass
+	update_size()
+	get_viewport().connect("size_changed", self, "update_size")
 
 func update_size():
 	var screen = get_viewport().get_visible_rect()
