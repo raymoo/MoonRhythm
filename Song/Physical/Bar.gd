@@ -24,12 +24,12 @@ func _init(start=0, end=0, note_time=0.0, note_scroll_pos=0.0):
 func _ready():
 	var x = center_lane * LANE_INTERVAL + MIN_X
 	var width = (end_lane + 1 - start_lane)
-	var x_scale = width * LANE_INTERVAL
+	var x_scale = width * LANE_INTERVAL - LANE_INTERVAL * 0.25
 	var translation = get_translation()
 	translation.x = x
 	set_translation(translation)
 	var scale = get_scale()
-	scale.x = x_scale / 2.0 - 0.005
+	scale.x = x_scale / 2.0
 	set_scale(scale)
 	add_to_group("field_update")
 	add_to_group("field_press")
