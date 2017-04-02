@@ -108,13 +108,14 @@ func make_stop(beat, duration):
 
 func handle_stops(tagline, file):
 	var text = tag_text(tagline, file)
-	var pairs = text.split(",")
-	for pair in pairs:
-		var values = pair.split_floats("=", false)
-		if values == null or values.size() != 2:
-			return "Bad Stop: " + pair
-		else:
-			stops.push_back(make_stop(values[0], values[1]))
+	if text != "":
+		var pairs = text.split(",")
+		for pair in pairs:
+			var values = pair.split_floats("=", false)
+			if values == null or values.size() != 2:
+				return "Bad Stop: " + pair
+			else:
+				stops.push_back(make_stop(values[0], values[1]))
 
 func handle_notes(file):
 	var chart = Chart.new()
