@@ -118,4 +118,6 @@ shadow/zoffset_scale = 2.0
 
 [node name="Camera" parent="." instance=ExtResource( 2 )]
 
+fov = 80.0
+
 
