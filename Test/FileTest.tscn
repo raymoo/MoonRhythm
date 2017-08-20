@@ -4,7 +4,28 @@
 
 [sub_resource type="GDScript" id=1]
 
-script/source = "extends Node\n\nconst SM = preload(\"res://Song/Chart/Foreign/SM/SM.gd\")\nconst Test = preload(\"res://Test/Test.tscn\")\nconst Chart = preload(\"res://Song/Chart/Chart.gd\")\n\nfunc on_file_chosen(path):\n\tget_node(\"FileTestDialog\").queue_free()\n\tvar sm = SM.new()\n\tvar error = sm.read_file(path)\n\tif error != null:\n\t\tprint(\"Error: \" + error)\n\telse:\n\t\tvar chart\n\t\tfor sm_chart in sm.charts:\n\t\t\tif sm_chart.difficulty == \"Medium\":\n\t\t\t\tchart = Chart.from_sm(sm, sm_chart)\n\t\tif chart == null:\n\t\t\tchart = Chart.from_sm(sm, sm.charts[0])\n\t\tvar test = Test.instance()\n\t\ttest.get_node(\"FieldTrack\").load_chart(chart)\n\t\tadd_child(test)"
+script/source = "extends Node
+
+const SM = preload(\"res://Song/Chart/Foreign/SM/SM.gd\")
+const Test = preload(\"res://Test/Test.tscn\")
+const Chart = preload(\"res://Song/Chart/Chart.gd\")
+
+func on_file_chosen(path):
+	get_node(\"FileTestDialog\").queue_free()
+	var sm = SM.new()
+	var error = sm.read_file(path)
+	if error != null:
+		print(\"Error: \" + error)
+	else:
+		var chart
+		for sm_chart in sm.charts:
+			if sm_chart.difficulty == \"Medium\":
+				chart = Chart.from_sm(sm, sm_chart)
+		if chart == null:
+			chart = Chart.from_sm(sm, sm.charts[0])
+		var test = Test.instance()
+		test.get_node(\"FieldTrack\").load_chart(chart)
+		add_child(test)"
 
 [node name="FileTest" type="Node"]
 
