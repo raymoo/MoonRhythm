@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://Test/AudioTest.gd" type="Script" id=1]
+[ext_resource path="res://Audio/AudioManager.tscn" type="PackedScene" id=2]
+
+[node name="Control" type="Panel"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+script/script = ExtResource( 1 )
+
+[node name="LineEdit" type="LineEdit" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 164.0
+margin/bottom = 45.0
+text = "file path"
+placeholder/alpha = 0.6
+focus_mode = 2
+caret/caret_blink = false
+caret/caret_blink_speed = 0.65
+
+[node name="Button" type="Button" parent="."]
+
+anchor/left = 1
+anchor/right = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 220.0
+margin/top = 0.0
+margin/right = 20.0
+margin/bottom = 37.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Play"
+flat = false
+
+[node name="AudioManager" parent="." instance=ExtResource( 2 )]
+
+[connection signal="pressed" from="Button" to="." method="handle_button_press"]
+
+
