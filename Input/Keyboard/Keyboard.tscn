@@ -3,7 +3,6 @@
 [ext_resource path="res://Input/Keyboard/Keyboard.gd" type="Script" id=1]
 [ext_resource path="res://Input/Keyboard/button.png" type="Texture" id=2]
 
-
 [node name="Keyboard" type="HBoxContainer"]
 
 anchor/right = 1
