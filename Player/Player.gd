@@ -4,7 +4,7 @@ const happy_image = preload("res://Player/Judgment/Happy.png")
 const sad_image = preload("res://Player/Judgment/Sad.png")
 
 const Chart = preload("res://Chart/Chart.gd")
-const ElementBuffer = preload("res://Chart/ElementBuffer.gd")
+const ElementBuffer = preload("res://Player/ElementBuffer.gd")
 const ScorePicture = preload("res://Player/Judgment/ScorePicture.tscn")
 
 var time = 0.0
