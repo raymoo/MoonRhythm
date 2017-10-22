@@ -1,6 +1,8 @@
 [gd_scene load_steps=3 format=1]
 
-[ext_resource path="res://Song/Physical/Bar.gd" type="Script" id=1]
+[ext_resource path="res://Player/Elements/Bar.gd" type="Script" id=1]
+
+
 
 [sub_resource type="FixedMaterial" id=1]
 

@@ -1,7 +1,7 @@
 extends Reference
 
-const ScrollSpeedChange = preload("res://Song/Chart/ScrollSpeedChange.gd")
-const Bar = preload("res://Song/Chart/Element/Bar.gd")
+const ScrollSpeedChange = preload("res://Chart/ScrollSpeedChange.gd")
+const Bar = preload("res://Chart/Element/Bar.gd")
 
 # Notes etc.
 var elements = []
@@ -30,7 +30,7 @@ static func make_overlap_case(offset):
 	chart.elements = elems
 	return chart
 
-const SM_MEASURE = preload("res://Song/Chart/Foreign/SM/Measure.gd")
+const SM_MEASURE = preload("res://Chart/Foreign/SM/Measure.gd")
 
 const EVENT_NOTE_LINE = 0
 const EVENT_BPM = 1

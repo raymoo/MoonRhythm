@@ -6,9 +6,9 @@
 
 script/source = "extends Node
 
-const SM = preload(\"res://Song/Chart/Foreign/SM/SM.gd\")
+const SM = preload(\"res://Chart/Foreign/SM/SM.gd\")
 const Test = preload(\"res://Test/Test.tscn\")
-const Chart = preload(\"res://Song/Chart/Chart.gd\")
+const Chart = preload(\"res://Chart/Chart.gd\")
 
 func on_file_chosen(path):
 	get_node(\"FileTestDialog\").queue_free()

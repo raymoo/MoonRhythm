@@ -1,11 +1,11 @@
 extends Control
 
-const happy_image = preload("res://Song/Physical/Happy.png")
-const sad_image = preload("res://Song/Physical/Sad.png")
+const happy_image = preload("res://Player/Judgment/Happy.png")
+const sad_image = preload("res://Player/Judgment/Sad.png")
 
-const Chart = preload("res://Song/Chart/Chart.gd")
-const ElementBuffer = preload("res://Song/Chart/ElementBuffer.gd")
-const ScorePicture = preload("res://Song/Physical/ScorePicture.tscn")
+const Chart = preload("res://Chart/Chart.gd")
+const ElementBuffer = preload("res://Chart/ElementBuffer.gd")
+const ScorePicture = preload("res://Player/Judgment/ScorePicture.tscn")
 
 var time = 0.0
 export var speed_multiplier = 1.0

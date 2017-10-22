@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=1]
 
-[ext_resource path="res://Song/FieldTrack.gd" type="Script" id=1]
+[ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Mapview/Field.tscn" type="PackedScene" id=2]
+
 
 [node name="FieldTrack" type="Control"]
 

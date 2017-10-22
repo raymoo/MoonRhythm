@@ -1,6 +1,6 @@
 extends Reference
 
-const PhysicalBar = preload("res://Song/Physical/Bar.tscn")
+const PhysicalBar = preload("res://Player/Elements/Bar.tscn")
 
 var time_ms
 var start_lane
