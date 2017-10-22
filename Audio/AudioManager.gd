@@ -21,7 +21,6 @@ func _fixed_process(delta):
 		if current_playback_pos != last_known_playback_pos:
 			last_known_playback_pos = current_playback_pos
 			time = (time + current_playback_pos) / 2
-			print("Playback time error: ", time - current_playback_pos)
 
 func load_song(song_path):
 	stream_player.stop()

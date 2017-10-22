@@ -6,8 +6,8 @@ onready var button_count = buttons.size()
 var touches_by_button = {}
 var buttons_by_touch = {}
 
-const button_up = preload("res://Input/Keyboard/button.png")
-const button_down = preload("res://Input/Keyboard/button_down.png")
+const button_up = preload("res://Input/button.png")
+const button_down = preload("res://Input/button_down.png")
 
 # Finger was pressed down
 signal pressed(button_index)

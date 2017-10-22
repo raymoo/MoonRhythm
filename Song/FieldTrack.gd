@@ -32,7 +32,6 @@ func _fixed_process(delta):
 	time += delta
 	var scroll_pos = element_buffer.time_to_scroll_pos(time)
 	element_buffer.add_new_elements_to(self, scroll_pos + 5)
-	print(time)
 	get_tree().call_group(0, "field_update", "update", self, scroll_pos, time)
 
 func _process(delta):

@@ -39,7 +39,10 @@ textures/glow_tc = 0
 textures/normal_tc = 0
 textures/shade_param_tc = 0
 
-[node name="Bar" type="TestCube" groups=[ "field_press", "field_update" ]]
+[node name="Bar" type="TestCube" groups=[
+"field_update",
+"field_press",
+]]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 0.125, 0, 0, 0, 0.005, 0, 0, 0, 0.0625, 0, 0.005, 1 )
